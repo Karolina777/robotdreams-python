@@ -31,5 +31,5 @@ a = 2
 b = 5
 c = 6
 
-d = int(str(a) + str(b) + str(c))
+d = str(a) + str(b) + str(c)
 print(d)
