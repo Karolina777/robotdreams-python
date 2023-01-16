@@ -1,42 +1,42 @@
 phone_book = dict()
 
 # create the initial phone book
-while True:
-    user_input = input('Enter a phone record "Name Number" (or "stop" to finish creating the phon book): ')
-    user_input_split = user_input.split()
-
-    # print(user_input_split)
-    # print(len(user_input_split))
-    command_length = len(user_input_split)
-
-    match command_length:
-        case 1:
-            match user_input_split[0]:
-                case 'stop':
-                    print('Phone boom=k is created')
-                    break
-                case _:
-                    print('Unknown command, try again')
-        case 2:
-            name = user_input_split[0]
-            number = user_input_split[1]
-
-            if not number.isdigit():
-                print('Phone number should contain only digits')
-                continue
-            if name not in phone_book.keys():
-                phone_book.update({name: number})
-            else:
-                print('This name is already in your phone book, please use unique names')
-                continue
-        case _:
-            print('Unknown command, try again')
+# while True:
+#     user_input = input('Enter a phone record "Name Number" (or "stop" to finish creating the phon book): ')
+#     user_input_split = user_input.split()
+#
+#     # print(user_input_split)
+#     # print(len(user_input_split))
+#     command_length = len(user_input_split)
+#
+#     match command_length:
+#         case 1:
+#             match user_input_split[0]:
+#                 case 'stop':
+#                     print('Phone boom=k is created')
+#                     break
+#                 case _:
+#                     print('Unknown command, try again')
+#         case 2:
+#             name = user_input_split[0]
+#             number = user_input_split[1]
+#
+#             if not number.isdigit():
+#                 print('Phone number should contain only digits')
+#                 continue
+#             if name not in phone_book.keys():
+#                 phone_book.update({name: number})
+#             else:
+#                 print('This name is already in your phone book, please use unique names')
+#                 continue
+#         case _:
+#             print('Unknown command, try again')
 
 # phone_book ={'Name1': 123,
 #              'Name2': 4534,
 #              'Name3': 35454,
 #              'Name4':345}
-print(phone_book)
+# print(phone_book)
 
 
 # work with created phone book
