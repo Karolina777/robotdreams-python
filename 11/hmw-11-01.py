@@ -5,10 +5,9 @@ from datetime import datetime
 
 
 def my_decorator(func):
-    def deco_func():
+    def deco_func(*args, **kwargs):
         print(f'Function name is "{func.__name__}" and the time of call is {datetime.now()}')
-        func()
-
+        return func(*args, **kwargs)
     return deco_func
 
 
