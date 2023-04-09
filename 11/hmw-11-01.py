@@ -12,8 +12,8 @@ def my_decorator(func):
 
 
 @my_decorator
-def my_func():
+def my_func(*args, **kwargs):
     print('This is my function')
 
 
-my_func()
+my_func('asv', 1)

@@ -2,10 +2,11 @@
 # який має повідомляти "Custom exception is occured"
 
 class MyCustomException(Exception):
-    print('Custom exception is occurred')
+    def __init__(self, message='Custom exception is occurred'):
+        super().__init__(message)
 
 
 try:
     raise MyCustomException()
-except MyCustomException as mce:
-    print(f'The exception name is {type(mce).__name__}')
+except MyCustomException as e:
+    print(e)
