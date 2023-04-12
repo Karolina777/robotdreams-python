@@ -5,6 +5,12 @@
 import json
 import os
 
+
+def save_phonebook_to_file(file_path_link, phone_book_dict):
+    # save the phone book to json file
+    with open(file_path_link, "w") as file:
+        json.dump(phone_book_dict, file, indent=4)
+
 file_path = "hmw-12-01-file1.json"
 phone_book = dict()
 
@@ -43,6 +49,7 @@ while True:
                 case 'delete':
                     if user_input_split[1] in phone_book.keys():
                         del phone_book[user_input_split[1]]
+                        save_phonebook_to_file(file_path,phone_book)
                         print(f'The record with the name {user_input_split[1]} is deleted from phone book')
                     else:
                         print(f' The name \'{user_input_split[1]}\' is NOT in your phone book')
@@ -57,18 +64,9 @@ while True:
             if user_input_split[0] == 'add':
                 if user_input_split[1] not in phone_book.keys():
                     phone_book.update({user_input_split[1]: user_input_split[2]})
+                    save_phonebook_to_file(file_path, phone_book)
                     print(f'Record with the Name {user_input_split[1]} is added to phone book')
                 else:
                     print(f' The name \'{user_input_split[1]}\' is already in your phone book')
             else:
                 print('Unknown command, try again')
-
-if initial_records != len(phone_book):
-    # save the phone book to json file
-    with open(file_path, "w") as f:
-        json.dump(phone_book, f, indent=4)
-
-    # else:
-    # # If the file doesn't exist yet, create a new file and write the dictionary to it
-    # with open(file_path, "w") as f:
-    #     json.dump(phone_book, f, indent=4)
