@@ -1,0 +1,1 @@
+Error 'Custom exception is occurred' occurred at 2023-04-09 20:09:06.557776
