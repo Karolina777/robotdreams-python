@@ -1,0 +1,8 @@
+INSERT INTO hmw_users (first_name, last_name, age)
+VALUES
+    ('Olesya', 'Bas', 10),
+    ('Olena', 'Yar', 18),
+    ('Maya', 'Gav', 20),
+    ('Maryna', 'Mew', 19),
+    ('Sonia', 'Bass', 60),
+    ('Kyrylo', 'Yar', 22);
