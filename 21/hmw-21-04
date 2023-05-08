@@ -1,0 +1,3 @@
+SELECT age, COUNT(*) as users FROM users
+        GROUP BY age HAVING age > 30
+        ORDER BY users desc, age
