@@ -2,48 +2,26 @@
 # Врахувати можливість декількох форматів: +380XXXXXXXXX, 380XXXXXXXXX, 0XXXXXXXXX
 
 import re
+import json
 
-
-phone_book = dict()
 
 # Regular expression to match phone numbers
 phone_number_pattern = r"(\s|^)(?:\+?380|0)\d{9}(\s|$)"
+file_name = 'phone_book2.json'
+try:
+    with open(file_name, 'r') as file:
+        phone_book_json = file.read()
+        # Load the phone book into a dictionary variable
+        phone_book = json.loads(phone_book_json)
+        print(phone_book)
+except FileNotFoundError:
+    print("Phone book file not found, creating empty phone book")
+    phone_book = dict()
 
 
 
-# create the initial phone book
-while True:
-    user_input = input('Enter a phone record "Name Number" (or "stop" to finish creating the phon book): ')
-    user_input_split = user_input.split()
 
-    command_length = len(user_input_split)
-
-    match command_length:
-        case 1:
-            match user_input_split[0]:
-                case 'stop':
-                    print('Phone book is created')
-                    break
-                case _:
-                    print('Unknown command, try again')
-        case 2:
-            name = user_input_split[0]
-            number = user_input_split[1]
-
-            match = re.match(phone_number_pattern, number)
-
-            if not match:
-                print(f"Number {number} is not Ukrainian valid number")
-                continue
-            if name not in phone_book.keys():
-                phone_book.update({name: number})
-            else:
-                print('This name is already in your phone book, please use unique names')
-                continue
-        case _:
-            print('Unknown command, try again')
-
-print(phone_book)
+flag_to_create_new_file = False
 
 # work with created phone book
 while True:
@@ -62,6 +40,12 @@ while True:
                     for key in phone_book.keys():
                         print(key)
                 case 'stop':
+                    if flag_to_create_new_file == True:
+                        with open(file_name, 'w') as file:
+                            json.dump(phone_book, file)
+                            print("The phone book was changed and thus the file was rewritten")
+                    else:
+                        print("The phone book was NOT changed")
                     print('Have a nice day!')
                     break
                 case _:
@@ -72,6 +56,7 @@ while True:
                     if user_input_split[1] in phone_book.keys():
                         del phone_book[user_input_split[1]]
                         print(f'The record with the name {user_input_split[1]} is deleted from phone book')
+                        flag_to_create_new_file = True
                     else:
                         print(f' The name \'{user_input_split[1]}\' is NOT in your phone book')
                 case 'show':
@@ -92,7 +77,9 @@ while True:
                 if user_input_split[1] not in phone_book.keys():
                     phone_book.update({user_input_split[1]: user_input_split[2]})
                     print(f'Record with the Name {user_input_split[1]} is added to phone book')
+                    flag_to_create_new_file = True
                 else:
                     print(f' The name \'{user_input_split[1]}\' is already in your phone book')
             else:
                 print('Unknown command, try again')
+
