@@ -1,0 +1,8 @@
+SELECT users.id as user_num, users.first_name, users.last_name, temp.title as purchased_book_title
+FROM users
+JOIN (
+      SELECT purchase.user_id, purchase.book_id, books.title
+      FROM purchase
+          JOIN books ON purchase.book_id = books.id
+      ) as temp ON users.id = temp.user_id
+ORDER BY user_num, purchased_book_title
