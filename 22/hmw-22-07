@@ -1,0 +1,4 @@
+SELECT books.author, sum(books.price) as sales_value, count(purchase.id) as sales_quantity
+FROM books
+JOIN purchase ON books.id = purchase.book_id
+GROUP BY books.author

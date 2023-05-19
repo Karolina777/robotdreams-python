@@ -1,0 +1,5 @@
+SELECT COUNT(purchase.date) as amount
+FROM books
+JOIN purchase ON books.id = purchase.book_id
+GROUP BY books.author
+HAVING books.author = "Rowling"
